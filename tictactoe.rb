@@ -60,16 +60,12 @@ def computer_picks_square(board)
   if winning_move == false
     WINNING_LINES.each do |line|
       position = two_in_a_row({line[0] => board[line[0]], line[1] => board[line[1]], line[2] => board[line[2]]}, 'X')
-      if position
-        break
-      end
+      break if position
     end
   end
 
-  if !position
-    position = empty_positions(board).sample
-  end
-
+  position = empty_positions(board).sample unless position
+  
   board[position] = 'O'
 end
 
@@ -81,7 +77,7 @@ def check_winner(lines, board)
       return "Computer"
     end
   end
-  return nil
+  nil
 end
 
 begin
